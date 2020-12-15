@@ -1,0 +1,3 @@
+* Table of Contents
+* Reminders
+.bashrc reads all files in .b.d with the .bash suffix.
