@@ -3,3 +3,7 @@
 	email = bendavlort@gmail.com
 [init]
 	defaultBranch = main
+[core]
+	editor = vim
+[pull]
+	rebase = false
