@@ -1,0 +1,1 @@
+* TODO clone spacemacs into ~ with make if missing, then delete the default .spacemacs and replace it.
