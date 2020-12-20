@@ -7,3 +7,5 @@
 	editor = emacs
 [pull]
 	rebase = false
+[credential]
+	helper = cache
