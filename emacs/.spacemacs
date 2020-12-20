@@ -46,7 +46,14 @@ This function should only modify configuration layer settings."
      lsp
      markdown
      multiple-cursors
-     org
+     (org :variables
+          org-directory "~/org"
+          org-journal-dir "~/org/journal/"
+          org-default-notes-file "~/org/refile.org"
+          org-use-fast-todo-selection t
+          org-agenda-span 'day
+          org-stuck-projects (quote ("" nil nil ""))
+          )
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
@@ -509,7 +516,7 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  )
+ (global-set-key "C-cb" 'org-switchb)) 
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
