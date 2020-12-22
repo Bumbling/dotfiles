@@ -49,8 +49,8 @@ This function should only modify configuration layer settings."
      (org :variables
           org-directory "~/org"
           org-journal-dir "~/org/journal/"
-          org-agenda-files ("~/org/refile.org" "~/agenda.org")
-          org-refile-targets ((org-agenda-files . (:maxlevel . 9)))
+          org-agenda-files '("~/org/refile.org"  "~/agenda.org")
+          org-refile-targets '((org-agenda-files . (:maxlevel . 9)))
           org-default-notes-file "~/org/refile.org"
           org-use-fast-todo-selection t
           org-agenda-span 'day
