@@ -46,10 +46,11 @@ This function should only modify configuration layer settings."
      lsp
      markdown
      multiple-cursors
-<<<<<<< HEAD
      (org :variables
           org-directory "~/org"
           org-journal-dir "~/org/journal/"
+          org-agenda-files ("~/org/refile.org" "~/agenda.org")
+          org-refile-targets ((org-agenda-files . (:maxlevel . 9)))
           org-default-notes-file "~/org/refile.org"
           org-use-fast-todo-selection t
           org-agenda-span 'day
@@ -58,12 +59,6 @@ This function should only modify configuration layer settings."
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
-=======
-     org
-     (shell :variables
-            shell-default-height 30
-            shell-default-position 'bottom)
->>>>>>> c46429309 (Hope I fuck nothing up.)
      ;; spell-checking
      syntax-checking
      version-control
@@ -530,7 +525,7 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
- (global-set-key "C-cb" 'org-switchb)) 
+ (global-set-key "C-c b" 'org-switchb)) 
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -544,7 +539,6 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files '("~/.dotfiles/org/agenda.org"))
  '(package-selected-packages
    '(xterm-color vterm unfill treemacs-magit toc-org terminal-here smeargle shell-pop orgit org-superstar org-rich-yank org-present org-pomodoro alert log4e gntp org-mime org-download org-cliplink org-brain mwim multi-term magit-svn magit-section magit-gitflow magit-popup htmlize helm-org-rifle helm-gitignore request helm-git-grep gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ fringe-helper git-gutter+ forge markdown-mode ghub closql emacsql-sqlite emacsql treepy flycheck-pos-tip pos-tip evil-org evil-magit magit git-commit with-editor transient eshell-z eshell-prompt-extras esh-help browse-at-remote org-plus-contrib treemacs helm-projectile helm iedit projectile flycheck dash helm-core which-key use-package treemacs-projectile treemacs-icons-dired treemacs-evil pfuture pcre2el overseer nameless macrostep hydra hybrid-mode ht helm-xref helm-themes helm-swoop helm-org helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag flycheck-package flycheck-elsa evil-mc emr elisp-slime-nav dotenv-mode diminish bind-map auto-compile async ace-window ace-jump-helm-line)))
 (custom-set-faces
