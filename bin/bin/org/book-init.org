@@ -1,0 +1,76 @@
+* Discussion
+  :PROPERTIES:
+  :DESCRIPTION: Starts a new book file and adds it to the database.
+  :LOG_INTO_DRAWER: LOGBOOK
+  :LOGGING:  TODO(!) WAIT(!) DONE(!) CANCELLED(!)
+  :END:
+  :LOGBOOK:
+  :END:
+** TODO data structures
+   :LOGBOOK:
+   - State "TODO"       from              [2021-01-07 Thu 10:27]
+   :END:
+a database of book records and the path to their org note file
+*** TODO Database of Book Records
+I'm going to modify the cd database code in gigamonkeys.com/book/practical-a-simple-database to
+familiarize myself with Lisp. It should store records, retrieve their info, some modification,
+and save them to file.
+#+begin_src emacs-lisp
+    (defun make-book (title &rest author genre fiction)
+                      (list :title title :author author :genre genre :fiction fiction))
+    (defvar *db* nil)
+    (defun add-record (record) (push record *db*))
+    (defun update (selector-fn &key title artist rating (ripped nil ripped-p))
+      (setf *db*
+            (mapcar
+             #'(lambda (row)
+                 (when (funcall selector-fn row)
+                   (if title    (setf (getf row :title) title))
+                   (if artist   (setf (getf row :artist) artist))
+                   (if rating   (setf (getf row :rating) rating))
+                   (if ripped-p (setf (getf row :ripped) ripped)))
+                 row) *db*)))
+    (defun dump-db ()
+      (dolist (record *db*)
+        (format t "~{~a:~16t~a~%~}~%" record)))
+    (defun prompt-read (prompt)
+      (format *query-io* "~a:" prompt)
+      (force-output *query-io*)
+      (read-line *query-io*))
+    (defun prompt-for-book ()
+      (make-book
+       (prompt-read "Title: ")
+       (prompt-read "Author: ")
+       (prompt-read "Genre: ")
+       (y-or-n-p "Is it fiction? [y/n]: ")))
+    (defun add-books ()
+      (loop (add-record (prompt-for-book))
+            (if (not (y-or-n-p "Another? [y/n]: ")) (return))))
+    (defun save-db (filename)
+      (with-open-file (out filename
+                           :direction :output
+                           :if-exists :supercede)
+                      (with-standard-io-syntax
+                       (print *db* out))))
+    (defun load-db (filename)
+      (with-open-file (in filename)
+                      (with-standard-io-syntax
+                       (setf *db* (read in)))))
+    (defun select (selector-fn)
+      (remove-if-not selector-fn *db*))
+    (defun make-comparisons-expr (field value)
+      `(equal (getf book ,field) ,value))
+    (defun make-comparisons-list (fields)
+      (loop while fields
+            collecting (make-comparisons-expr (pop fields) (pop fields))))
+    (defmacro book-where (&rest clauses)
+      `#'(lambda (book) (and ,@(make-comparisons-list clauses))))
+#+end_src
+*** TODO Path to Org File
+    :LOGBOOK:
+    - State "TODO"       from              [2021-01-07 Thu 10:27]
+    :END:
+** TODO structure of book notes files
+   :LOGBOOK:
+   - State "TODO"       from              [2021-01-07 Thu 10:27]
+   :END:
