@@ -40,10 +40,12 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      auto-completion
      better-defaults
+     bibtex
      emacs-lisp
      git
      helm
      lsp
+     latex
      markdown
      multiple-cursors
      (org :variables
@@ -162,7 +164,7 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil, a form that evaluates to a package directory. For example, to
    ;; use different package directories for different Emacs versions, set this
    ;; to `emacs-version'. (default 'emacs-version)
-   dotspacemacs-elpa-subdirectory 'emacs-version
+   dotspacemacs-elpa-subdirectory nil 
 
    ;; One of `vim', `emacs' or `hybrid'.
    ;; `hybrid' is like `vim' except that `insert state' is replaced by the
@@ -525,7 +527,8 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
- (global-set-key "C-c b" 'org-switchb)) 
+  (global-visual-line-mode t)
+ (global-set-key "C-c b" org-switchb))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
