@@ -41,6 +41,8 @@ This function should only modify configuration layer settings."
      auto-completion
      better-defaults
      bibtex
+     (deft :variables
+       deft-zetteldeft t)
      emacs-lisp
      git
      helm
@@ -50,7 +52,6 @@ This function should only modify configuration layer settings."
      multiple-cursors
      (org :variables
           org-directory "~/org"
-          org-journal-dir "~/org/journal/"
           org-agenda-files '("~/org/refile.org"  "~/agenda.org")
           org-refile-targets '((org-agenda-files . (:maxlevel . 9)))
           org-default-notes-file "~/org/refile.org"
@@ -528,7 +529,10 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (global-visual-line-mode t)
- (global-set-key (kbd "C-c b") 'org-switchb))
+  (global-set-key (kbd "C-c b") 'org-switchb)
+  (setq deft-extensions '("org" "txt"))
+  (setq deft-directory (concat org-directory "/journal"))
+  (setq deft-recursive t))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
