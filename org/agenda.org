@@ -1,6 +1,0 @@
-* TODO 
-* TODO Write DSL for stow-ing in Dependent Haskell for Practice
-** TODO Understand stow
-** 
-* TODO Remap CapsLock, LCtrl, & ESC
-
