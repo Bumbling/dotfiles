@@ -531,7 +531,7 @@ before packages are loaded."
   (global-visual-line-mode t)
   (global-set-key (kbd "C-c b") 'org-switchb)
   (setq deft-extensions '("org" "txt"))
-  (setq deft-directory (concat org-directory "/journal"))
+  (setq deft-directory (concat org-directory "/zettel"))
   (setq deft-recursive t))
 
 ;; Do not write anything past this comment. This is where Emacs will
